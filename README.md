@@ -60,13 +60,41 @@ A modern, Spotify-themed diet tracking app designed for testosterone optimizatio
 
 ## How to Use
 
+### Two Versions Available
+
+**Desktop Version (`index.html`)**:
+- Full-featured desktop layout with sidebar navigation
+- Best for tablets and computers
+
+**Mobile Version (`mobile.html`)**:
+- Single-file optimized for phones
+- Bottom navigation bar
+- Touch-optimized interface
+- Manual day selection
+- Reset controls
+
 ### Running the App
 
-1. **Open the app**: Simply open `index.html` in any modern web browser
-2. **Navigate**: Use the sidebar to switch between different views
+1. **Open the app**:
+   - Desktop/Tablet: Open `index.html` in any modern web browser
+   - **Mobile/Phone: Open `mobile.html` for best experience**
+2. **Navigate**: Use the sidebar (desktop) or bottom navigation (mobile) to switch between views
 3. **Track macros**: Go to "Macro Tracker" to log your daily intake
 4. **Check BMI**: Visit "BMI Tracker" to calculate and track your body metrics
 5. **Shop**: Use "Shopping List" to organize your weekly grocery trip
+
+### Mobile-Specific Features
+
+The mobile version includes additional controls:
+- **Day Selector**: Manually choose which day (1-7) you're on
+- **Auto-Detect Day**: Switch back to automatic day detection based on current date
+- **Reset All Data**: Clear all saved data (macros, weight log, shopping list, day override)
+- **Reset Shopping List**: Uncheck all shopping items
+
+**To use on your phone**:
+1. Transfer `mobile.html` to your phone or access it via a web server
+2. Open in your phone's browser (Safari, Chrome, etc.)
+3. Add to home screen for app-like experience
 
 ### Day Detection
 
