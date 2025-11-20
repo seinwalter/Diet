@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T-Boost Diet Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <h1>💪 T-Boost</h1>
+                <p class="tagline">Testosterone Diet Tracker</p>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item active" data-view="today">
+                    <span class="icon">📅</span>
+                    <span>Today's Plan</span>
+                </li>
+                <li class="nav-item" data-view="week">
+                    <span class="icon">📊</span>
+                    <span>Weekly Overview</span>
+                </li>
+                <li class="nav-item" data-view="macros">
+                    <span class="icon">🎯</span>
+                    <span>Macro Tracker</span>
+                </li>
+                <li class="nav-item" data-view="bmi">
+                    <span class="icon">⚖️</span>
+                    <span>BMI Tracker</span>
+                </li>
+                <li class="nav-item" data-view="shopping">
+                    <span class="icon">🛒</span>
+                    <span>Shopping List</span>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="app-header">
+                <div class="current-day-info">
+                    <h2 id="currentDayTitle">Day 1 - Monday</h2>
+                    <p id="currentDate">January 1, 2025</p>
+                </div>
+                <div class="daily-summary">
+                    <div class="summary-card">
+                        <span class="label">Calories</span>
+                        <span class="value" id="dailyCalories">2,260</span>
+                    </div>
+                    <div class="summary-card">
+                        <span class="label">Protein</span>
+                        <span class="value" id="dailyProtein">150g</span>
+                    </div>
+                    <div class="summary-card">
+                        <span class="label">Fat</span>
+                        <span class="value" id="dailyFat">138g</span>
+                    </div>
+                    <div class="summary-card">
+                        <span class="label">Carbs</span>
+                        <span class="value" id="dailyCarbs">128g</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Today's Plan View -->
+            <section id="todayView" class="view active">
+                <div class="meals-container" id="mealsContainer">
+                    <!-- Meals will be dynamically inserted here -->
+                </div>
+            </section>
+
+            <!-- Weekly Overview -->
+            <section id="weekView" class="view">
+                <div class="week-grid" id="weekGrid">
+                    <!-- Week overview will be inserted here -->
+                </div>
+            </section>
+
+            <!-- Macro Tracker View -->
+            <section id="macrosView" class="view">
+                <div class="macro-tracker">
+                    <h2>Daily Macro Tracker</h2>
+                    <div class="tracker-grid">
+                        <div class="tracker-card">
+                            <h3>Consumed Today</h3>
+                            <div class="input-group">
+                                <label>Calories</label>
+                                <input type="number" id="consumedCalories" placeholder="0">
+                            </div>
+                            <div class="input-group">
+                                <label>Protein (g)</label>
+                                <input type="number" id="consumedProtein" placeholder="0">
+                            </div>
+                            <div class="input-group">
+                                <label>Fat (g)</label>
+                                <input type="number" id="consumedFat" placeholder="0">
+                            </div>
+                            <div class="input-group">
+                                <label>Carbs (g)</label>
+                                <input type="number" id="consumedCarbs" placeholder="0">
+                            </div>
+                            <button class="btn-primary" id="updateMacros">Update Progress</button>
+                        </div>
+                        <div class="tracker-card">
+                            <h3>Progress Overview</h3>
+                            <div class="macro-progress">
+                                <div class="progress-item">
+                                    <div class="progress-header">
+                                        <span>Calories</span>
+                                        <span id="caloriesProgress">0 / 2,260</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" id="caloriesBar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-item">
+                                    <div class="progress-header">
+                                        <span>Protein</span>
+                                        <span id="proteinProgress">0g / 150g</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill protein" id="proteinBar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-item">
+                                    <div class="progress-header">
+                                        <span>Fat</span>
+                                        <span id="fatProgress">0g / 138g</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill fat" id="fatBar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-item">
+                                    <div class="progress-header">
+                                        <span>Carbs</span>
+                                        <span id="carbsProgress">0g / 128g</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill carbs" id="carbsBar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BMI Tracker View -->
+            <section id="bmiView" class="view">
+                <div class="bmi-tracker">
+                    <h2>BMI & Body Tracker</h2>
+                    <div class="tracker-grid">
+                        <div class="tracker-card">
+                            <h3>Calculate BMI</h3>
+                            <div class="input-group">
+                                <label>Height (cm)</label>
+                                <input type="number" id="heightCm" placeholder="175">
+                            </div>
+                            <div class="input-group">
+                                <label>Weight (kg)</label>
+                                <input type="number" id="weightKg" placeholder="80">
+                            </div>
+                            <button class="btn-primary" id="calculateBMI">Calculate BMI</button>
+                        </div>
+                        <div class="tracker-card">
+                            <h3>Your Results</h3>
+                            <div class="bmi-result">
+                                <div class="bmi-value" id="bmiValue">--</div>
+                                <div class="bmi-category" id="bmiCategory">Enter your measurements</div>
+                                <div class="bmi-scale">
+                                    <div class="scale-item underweight">
+                                        <span>Underweight</span>
+                                        <span>&lt;18.5</span>
+                                    </div>
+                                    <div class="scale-item normal">
+                                        <span>Normal</span>
+                                        <span>18.5-24.9</span>
+                                    </div>
+                                    <div class="scale-item overweight">
+                                        <span>Overweight</span>
+                                        <span>25-29.9</span>
+                                    </div>
+                                    <div class="scale-item obese">
+                                        <span>Obese</span>
+                                        <span>30+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="weight-tracker">
+                        <h3>Weight Progress</h3>
+                        <p class="info-text">Track your weight weekly to monitor progress. Target: 1-1.5 lbs/week loss</p>
+                        <div class="weight-log" id="weightLog">
+                            <p class="placeholder">Start logging your weight to see progress</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Shopping List View -->
+            <section id="shoppingView" class="view">
+                <div class="shopping-list">
+                    <h2>Weekly Shopping List</h2>
+                    <p class="subtitle">Everything you need for testosterone-boosting nutrition</p>
+
+                    <div class="shopping-grid">
+                        <div class="shopping-category">
+                            <h3>🥩 Protein Sources</h3>
+                            <ul class="shopping-items">
+                                <li>
+                                    <input type="checkbox" id="item-beef">
+                                    <label for="item-beef">2 lbs ground beef (80/20)</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="item-steak">
+                                    <label for="item-steak">2 lbs ribeye or NY strip steaks</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="item-liver">
+                                    <label for="item-liver">1.5 lbs beef liver (optional)</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="item-eggs">
+                                    <label for="item-eggs">3 dozen whole eggs</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="item-salmon">
+                                    <label for="item-salmon">1.5 lbs salmon</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="item-sardines">
+                                    <label for="item-sardines">1 lb sardines (canned in olive oil)</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="item-chicken">
+                                    <label for="item-chicken">2 lbs chicken thighs</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="item-turkey">
+                                    <label for="item-turkey">1 lb ground turkey (93/7)</label>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="shopping-category">
+                            <h3>🥑 Fats & Oils</h3>
+                            <ul class="shopping-items">
+                                <li>
+                                    <input type="checkbox" id="item-butter">
+                                    <label for="item-butter">1 lb grass-fed butter</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="item-olive-oil">
+                                    <label for="item-olive-oil">500ml olive oil</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="item-avocados">
+                                    <label for="item-avocados">4-5 avocados</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="item-almonds">
+                                    <label for="item-almonds">1 lb raw almonds</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="item-macadamia">
+                                    <label for="item-macadamia">8 oz macadamia nuts</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="item-brazil">
+                                    <label for="item-brazil">4 oz Brazil nuts</label>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="shopping-category">
+                            <h3>🍚 Carbs</h3>
+                            <ul class="shopping-items">
+                                <li>
+                                    <input type="checkbox" id="item-white-rice">
+                                    <label for="item-white-rice">2 lbs white rice</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="item-sweet-potato">
+                                    <label for="item-sweet-potato">3 lbs sweet potatoes</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="item-jasmine-rice">
+                                    <label for="item-jasmine-rice">1 lb jasmine rice</label>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="shopping-category">
+                            <h3>🥬 Vegetables</h3>
+                            <ul class="shopping-items">
+                                <li>
+                                    <input type="checkbox" id="item-spinach">
+                                    <label for="item-spinach">2 bags spinach</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="item-broccoli">
+                                    <label for="item-broccoli">2 lbs broccoli</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="item-asparagus">
+                                    <label for="item-asparagus">2 bunches asparagus</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="item-peppers">
+                                    <label for="item-peppers">4 bell peppers</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="item-mushrooms">
+                                    <label for="item-mushrooms">1 lb mushrooms</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="item-onions">
+                                    <label for="item-onions">3 onions</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="item-garlic">
+                                    <label for="item-garlic">2 bulbs garlic</label>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="shopping-category">
+                            <h3>🥛 Dairy</h3>
+                            <ul class="shopping-items">
+                                <li>
+                                    <input type="checkbox" id="item-yogurt">
+                                    <label for="item-yogurt">32 oz full-fat Greek yogurt</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="item-milk">
+                                    <label for="item-milk">1/2 gallon whole milk</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="item-cheese">
+                                    <label for="item-cheese">8 oz aged cheese (parmesan/cheddar)</label>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="shopping-category">
+                            <h3>🍫 Extras</h3>
+                            <ul class="shopping-items">
+                                <li>
+                                    <input type="checkbox" id="item-chocolate">
+                                    <label for="item-chocolate">Dark chocolate (85%+)</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="item-salt">
+                                    <label for="item-salt">Sea salt</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="item-coffee">
+                                    <label for="item-coffee">Coffee</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="item-vinegar">
+                                    <label for="item-vinegar">Apple cider vinegar</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

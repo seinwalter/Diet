@@ -1,0 +1,684 @@
+/* Spotify Color Palette */
+:root {
+    --spotify-green: #1DB954;
+    --spotify-black: #191414;
+    --spotify-dark-gray: #121212;
+    --spotify-gray: #282828;
+    --spotify-light-gray: #B3B3B3;
+    --spotify-white: #FFFFFF;
+    --spotify-hover: #1ed760;
+    --spotify-active: #169c46;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--spotify-black);
+    color: var(--spotify-white);
+    overflow-x: hidden;
+}
+
+.app-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar Navigation */
+.sidebar {
+    width: 280px;
+    background-color: var(--spotify-dark-gray);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.logo h1 {
+    font-size: 28px;
+    color: var(--spotify-green);
+    margin-bottom: 4px;
+}
+
+.tagline {
+    font-size: 12px;
+    color: var(--spotify-light-gray);
+    margin-bottom: 32px;
+}
+
+.nav-menu {
+    list-style: none;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--spotify-light-gray);
+    font-weight: 500;
+}
+
+.nav-item:hover {
+    background-color: var(--spotify-gray);
+    color: var(--spotify-white);
+}
+
+.nav-item.active {
+    background-color: var(--spotify-gray);
+    color: var(--spotify-green);
+}
+
+.nav-item .icon {
+    font-size: 24px;
+    margin-right: 16px;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    margin-left: 280px;
+    background: linear-gradient(180deg, var(--spotify-gray) 0%, var(--spotify-black) 300px);
+    min-height: 100vh;
+    padding: 24px;
+}
+
+/* Header */
+.app-header {
+    margin-bottom: 32px;
+}
+
+.current-day-info h2 {
+    font-size: 32px;
+    margin-bottom: 8px;
+    color: var(--spotify-white);
+}
+
+.current-day-info p {
+    font-size: 14px;
+    color: var(--spotify-light-gray);
+    margin-bottom: 24px;
+}
+
+.daily-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.summary-card {
+    background-color: var(--spotify-gray);
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.2s ease;
+}
+
+.summary-card:hover {
+    background-color: #333;
+    transform: translateY(-2px);
+}
+
+.summary-card .label {
+    font-size: 12px;
+    color: var(--spotify-light-gray);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.summary-card .value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--spotify-green);
+}
+
+/* Views */
+.view {
+    display: none;
+}
+
+.view.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Meals Container */
+.meals-container {
+    display: grid;
+    gap: 20px;
+}
+
+.meal-card {
+    background-color: var(--spotify-gray);
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.meal-card:hover {
+    border-color: var(--spotify-green);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(29, 185, 84, 0.2);
+}
+
+.meal-card.current {
+    border-color: var(--spotify-green);
+    background: linear-gradient(135deg, var(--spotify-gray) 0%, #1a1a1a 100%);
+    box-shadow: 0 4px 20px rgba(29, 185, 84, 0.3);
+}
+
+.meal-card.completed {
+    opacity: 0.6;
+}
+
+.meal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.meal-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--spotify-white);
+}
+
+.meal-time {
+    font-size: 14px;
+    color: var(--spotify-light-gray);
+    background-color: rgba(29, 185, 84, 0.2);
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+.current-indicator {
+    display: inline-block;
+    background-color: var(--spotify-green);
+    color: var(--spotify-black);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.meal-foods {
+    list-style: none;
+    margin-bottom: 16px;
+}
+
+.meal-foods li {
+    padding: 8px 0;
+    color: var(--spotify-light-gray);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.meal-foods li:last-child {
+    border-bottom: none;
+}
+
+.meal-macros {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.macro-item {
+    text-align: center;
+}
+
+.macro-label {
+    font-size: 11px;
+    color: var(--spotify-light-gray);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.macro-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--spotify-green);
+}
+
+/* Week Grid */
+.week-grid {
+    display: grid;
+    gap: 20px;
+}
+
+.day-card {
+    background-color: var(--spotify-gray);
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.day-card:hover {
+    background-color: #333;
+    transform: translateY(-2px);
+}
+
+.day-card.current-day {
+    border: 2px solid var(--spotify-green);
+}
+
+.day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.day-number {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--spotify-green);
+}
+
+.day-meals-list {
+    list-style: none;
+}
+
+.day-meals-list li {
+    padding: 6px 0;
+    color: var(--spotify-light-gray);
+    font-size: 14px;
+}
+
+/* Macro Tracker */
+.macro-tracker {
+    max-width: 1200px;
+}
+
+.macro-tracker h2 {
+    font-size: 32px;
+    margin-bottom: 32px;
+}
+
+.tracker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.tracker-card {
+    background-color: var(--spotify-gray);
+    border-radius: 12px;
+    padding: 32px;
+}
+
+.tracker-card h3 {
+    font-size: 20px;
+    margin-bottom: 24px;
+    color: var(--spotify-green);
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    color: var(--spotify-light-gray);
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 16px;
+    background-color: var(--spotify-black);
+    border: 2px solid transparent;
+    border-radius: 6px;
+    color: var(--spotify-white);
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--spotify-green);
+    background-color: #1a1a1a;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 14px 24px;
+    background-color: var(--spotify-green);
+    color: var(--spotify-black);
+    border: none;
+    border-radius: 24px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary:hover {
+    background-color: var(--spotify-hover);
+    transform: scale(1.02);
+}
+
+.btn-primary:active {
+    background-color: var(--spotify-active);
+    transform: scale(0.98);
+}
+
+.macro-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.progress-item {
+    width: 100%;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: var(--spotify-light-gray);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 12px;
+    background-color: var(--spotify-black);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--spotify-green);
+    border-radius: 6px;
+    transition: width 0.5s ease;
+}
+
+.progress-fill.protein {
+    background: linear-gradient(90deg, #1DB954 0%, #1ed760 100%);
+}
+
+.progress-fill.fat {
+    background: linear-gradient(90deg, #FFA500 0%, #FFB733 100%);
+}
+
+.progress-fill.carbs {
+    background: linear-gradient(90deg, #4169E1 0%, #5a7fe1 100%);
+}
+
+/* BMI Tracker */
+.bmi-tracker {
+    max-width: 1200px;
+}
+
+.bmi-tracker h2 {
+    font-size: 32px;
+    margin-bottom: 32px;
+}
+
+.bmi-result {
+    text-align: center;
+}
+
+.bmi-value {
+    font-size: 72px;
+    font-weight: 700;
+    color: var(--spotify-green);
+    margin-bottom: 16px;
+}
+
+.bmi-category {
+    font-size: 24px;
+    color: var(--spotify-light-gray);
+    margin-bottom: 32px;
+}
+
+.bmi-scale {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.scale-item {
+    padding: 16px;
+    border-radius: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.scale-item.underweight {
+    background-color: rgba(64, 156, 255, 0.2);
+    border: 2px solid #409CFF;
+}
+
+.scale-item.normal {
+    background-color: rgba(29, 185, 84, 0.2);
+    border: 2px solid var(--spotify-green);
+}
+
+.scale-item.overweight {
+    background-color: rgba(255, 165, 0, 0.2);
+    border: 2px solid #FFA500;
+}
+
+.scale-item.obese {
+    background-color: rgba(255, 68, 68, 0.2);
+    border: 2px solid #FF4444;
+}
+
+.weight-tracker {
+    margin-top: 32px;
+    background-color: var(--spotify-gray);
+    padding: 24px;
+    border-radius: 12px;
+}
+
+.weight-tracker h3 {
+    font-size: 20px;
+    margin-bottom: 16px;
+    color: var(--spotify-green);
+}
+
+.info-text {
+    color: var(--spotify-light-gray);
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.weight-log {
+    padding: 16px;
+    background-color: var(--spotify-black);
+    border-radius: 8px;
+}
+
+.placeholder {
+    color: var(--spotify-light-gray);
+    text-align: center;
+    font-style: italic;
+}
+
+/* Shopping List */
+.shopping-list {
+    max-width: 1400px;
+}
+
+.shopping-list h2 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: var(--spotify-light-gray);
+    margin-bottom: 32px;
+}
+
+.shopping-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.shopping-category {
+    background-color: var(--spotify-gray);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.shopping-category h3 {
+    font-size: 18px;
+    margin-bottom: 16px;
+    color: var(--spotify-green);
+}
+
+.shopping-items {
+    list-style: none;
+}
+
+.shopping-items li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+}
+
+.shopping-items li:last-child {
+    border-bottom: none;
+}
+
+.shopping-items input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--spotify-light-gray);
+    border-radius: 4px;
+    margin-right: 12px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.shopping-items input[type="checkbox"]:checked {
+    background-color: var(--spotify-green);
+    border-color: var(--spotify-green);
+}
+
+.shopping-items input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--spotify-black);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.shopping-items label {
+    cursor: pointer;
+    color: var(--spotify-light-gray);
+    transition: all 0.2s ease;
+}
+
+.shopping-items input[type="checkbox"]:checked + label {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        position: relative;
+        height: auto;
+        padding: 16px;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 16px;
+    }
+
+    .app-container {
+        flex-direction: column;
+    }
+
+    .daily-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tracker-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .shopping-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--spotify-black);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--spotify-gray);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #333;
+}
